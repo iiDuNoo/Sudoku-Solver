@@ -1,6 +1,6 @@
 #sudoku solver project
 #project uses backtracking algorithm and returns complete solution
-def solvemode(bo)
+def solvemode(bo):
     find = find_empty(bo) #finds empty cell
     if find:
         row, column = find #collects row and column dimensions, stores in bo 2D array of integers
