@@ -4,7 +4,7 @@ import pygame
 import time
 pygame.font.init()
 
-
+#preset board
 class Grid:
     board = [
 
@@ -53,7 +53,7 @@ class Grid:
         self.cubes[row][column].set_temp(val)
 
     def draw(self):
-        # Draw Grid Lines
+        # Draws lines on grid
         gap = self.width / 9
         for i in range(self.rows+1):
             if i % 3 == 0 and i != 0:
@@ -63,13 +63,13 @@ class Grid:
             pygame.draw.line(self.win, (0,0,0), (0, i*gap), (self.width, i*gap), thick)
             pygame.draw.line(self.win, (0, 0, 0), (i * gap, 0), (i * gap, self.height), thick)
 
-        # Draw Cubes
+        # Draws cube
         for i in range(self.rows):
             for j in range(self.columns):
                 self.cubes[i][j].draw(self.win)
 
     def select(self, row, col):
-        # Reset all other
+        # Reset others
         for i in range(self.rows):
             for j in range(self.columns):
                 self.cubes[i][j].selected = False
@@ -78,7 +78,7 @@ class Grid:
         self.selected = (row, column)
 
     def clear(self):
-        row, col = self.selected
+        row, column = self.selected
         if self.cubes[row][column].value == 0:
             self.cubes[row][column].set_temp(0)
 
@@ -125,7 +125,7 @@ class Grid:
         if not find:
             return True
         else:
-            row, col = find
+            row, column = find
 
         for i in range(1, 10):
             if valid(self.model, i, (row, column)):
@@ -236,11 +236,11 @@ def valid(bo, num, pos):
 
 def redraw_window(win, board, time, strikes):
     win.fill((255,255,255))
-    # Draw time
+    # Draws time in corner
     fnt = pygame.font.SysFont("comicsans", 40)
     text = fnt.render("Time: " + format_time(time), 1, (0,0,0))
     win.blit(text, (540 - 160, 560))
-    # Draw Strikes
+    # Draw strikes
     text = fnt.render("X " * strikes, 1, (255, 0, 0))
     win.blit(text, (20, 560))
     # Draw grid and board
