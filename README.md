@@ -4,6 +4,7 @@
 Ingame view before solving
 
 ![](ingame.png)
+
 Ingame view while solving
 
 ![](ingame_solving.png)
